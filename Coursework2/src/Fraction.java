@@ -88,6 +88,18 @@ public class Fraction {
         return new Fraction(num, denom);
     }
     
+//    public Fraction invert() {
+//    	int denom = this.getNumerator();
+//        int num = this.getDenominator();
+//        return new Fraction(num, denom);
+//    }
+    
+    public Fraction divide(Fraction frac) {
+        int num = this.getNumerator() * frac.getDenominator();
+        int denom = this.getDenominator() * frac.getNumerator();
+        return new Fraction(num, denom);
+    }
+    
     private int myLcm(int denumA, int denumB) {
         int a = denumA * denumB;
         return a;

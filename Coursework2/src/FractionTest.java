@@ -59,8 +59,8 @@ public class FractionTest {
     
     @Test
     public void divide() {
-    	assertEquals(new Fraction(5, 6), new Fraction(1, 6).multiply(new Fraction(1, 5)));
-    	assertEquals(new Fraction(5, 7), new Fraction(3, 7).multiply(new Fraction(1, 2)));
+    	assertEquals(new Fraction(5, 6), new Fraction(1, 6).divide(new Fraction(1, 5)));
+    	assertEquals(new Fraction(6, 7), new Fraction(3, 7).divide(new Fraction(1, 2)));
    	}
     
     @Test
