@@ -17,10 +17,10 @@ public class FractionTest {
 //        assertEquals("Wrong answer!", new Fraction(1, 0));
 //    }
     
-//    @Test
-//	public void divideByZero() {
-//    	assertEquals(new Fraction(1, 0), new Fraction(1, 0));
-//	}
+    @Test
+	public void divideByZero() {
+    	assertEquals(new Fraction(1, 0), new Fraction(1, 0));
+	}
     
     @Test
    	public void equals() {
@@ -47,6 +47,7 @@ public class FractionTest {
     public void subtract() {
     	assertEquals(new Fraction(2, 15), new Fraction(1, 3).subtract(new Fraction(1, 5)));
     	assertEquals(new Fraction(1, 63), new Fraction(4, 7).subtract(new Fraction(5, 9)));
+    	// to test subtraction with non positive fractions
    	}
     
     @Test
