@@ -35,5 +35,23 @@ public class FractionTest {
     	assertEquals(new Fraction(1, 4), new Fraction(1, 2).multiply(new Fraction(1, 2)));
     	assertEquals(new Fraction(3, 10), new Fraction(1, 2).multiply(new Fraction(3, 5)));
    	}
+    
+//    @Test
+//    public void add() {
+//    	assertEquals(new Fraction(7, 10), new Fraction(1, 2).add(new Fraction(1, 5)));
+//    	assertEquals(new Fraction(11, 12), new Fraction(2, 3).add(new Fraction(1, 4)));
+//   	}
+    
+    @Test
+    public void subtract() {
+   	}
+    
+    @Test
+    public void divide() {
+   	}
+    
+    @Test
+    public void absValue() {
+   	}
 
 }
