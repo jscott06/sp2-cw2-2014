@@ -12,7 +12,7 @@ public class Fraction {
         }
         int gcd = myGcd(num, denom);
         setNumerator(num / gcd);
-        setDenominator(num / gcd);
+        setDenominator(denom / gcd);
     }
 
     @Override
