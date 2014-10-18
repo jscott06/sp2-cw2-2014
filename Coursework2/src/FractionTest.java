@@ -40,10 +40,13 @@ public class FractionTest {
     public void add() {
     	assertEquals(new Fraction(7, 10), new Fraction(1, 2).add(new Fraction(1, 5)));
     	assertEquals(new Fraction(11, 12), new Fraction(2, 3).add(new Fraction(1, 4)));
+    	// to test addition with non positive fractions
    	}
     
     @Test
     public void subtract() {
+    	assertEquals(new Fraction(2, 15), new Fraction(1, 3).subtract(new Fraction(1, 5)));
+    	assertEquals(new Fraction(1, 63), new Fraction(4, 7).subtract(new Fraction(5, 9)));
    	}
     
     @Test
