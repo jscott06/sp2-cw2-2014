@@ -1,6 +1,8 @@
 /**
  * Created by keith for the second coursework assignment.
  */
+import static java.lang.Math.*;
+
 public class Fraction {
     private int numerator;
     private int denominator;
@@ -77,6 +79,12 @@ public class Fraction {
     	int num2 = (frac.getNumerator() * (lcm / frac.getDenominator()));
         int num = num1 - num2;
         int denom = lcm;
+        return new Fraction(num, denom);
+    }
+    
+    public Fraction abs() {
+    	int num = Math.abs(this.getNumerator());
+        int denom = Math.abs(this.getDenominator());
         return new Fraction(num, denom);
     }
     
