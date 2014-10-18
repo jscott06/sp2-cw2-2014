@@ -64,7 +64,10 @@ public class FractionTest {
    	}
     
     @Test
-    public void absValue() {
+    public void negate() {
+    	assertEquals(new Fraction(1, 2), new Fraction(-1, 2).negate());
+    	assertEquals(new Fraction(-1, 29), new Fraction(1, 29).negate());
+    	assertEquals(new Fraction(-5, 2), new Fraction(5, 2).negate());
    	}
 
 }
