@@ -88,15 +88,15 @@ public class Fraction {
         return new Fraction(num, denom);
     }
     
-//    public Fraction invert() {
-//    	int denom = this.getNumerator();
-//        int num = this.getDenominator();
-//        return new Fraction(num, denom);
-//    }
-    
     public Fraction divide(Fraction frac) {
         int num = this.getNumerator() * frac.getDenominator();
         int denom = this.getDenominator() * frac.getNumerator();
+        return new Fraction(num, denom);
+    }
+    
+    public Fraction negate() {
+    	int num = - this.getNumerator();
+        int denom = this.getDenominator();
         return new Fraction(num, denom);
     }
     
