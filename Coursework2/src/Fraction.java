@@ -57,14 +57,12 @@ public class Fraction {
     }
 
     public Fraction multiply(Fraction frac) {
-
         int num = this.getNumerator() * frac.getNumerator();
         int denom = this.getDenominator() * frac.getDenominator();
         return new Fraction(num, denom);
     }
     
     public Fraction add(Fraction frac) {
-    	
     	int lcm = myLcm(getDenominator(), frac.getDenominator());
     	int num1 = (this.getNumerator() * (lcm / this.getDenominator()));
     	int num2 = (frac.getNumerator() * (lcm / frac.getDenominator()));
@@ -73,8 +71,7 @@ public class Fraction {
         return new Fraction(num, denom);
     }
     
-public Fraction subtract(Fraction frac) {
-    	
+    public Fraction subtract(Fraction frac) {
     	int lcm = myLcm(getDenominator(), frac.getDenominator());
     	int num1 = (this.getNumerator() * (lcm / this.getDenominator()));
     	int num2 = (frac.getNumerator() * (lcm / frac.getDenominator()));

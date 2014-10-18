@@ -51,6 +51,13 @@ public class FractionTest {
    	}
     
     @Test
+    public void absoluteValue() {
+    	assertEquals(new Fraction(1, 2), new Fraction(-1, 2).abs());
+    	assertEquals(new Fraction(1, 29), new Fraction(1, -29).abs());
+    	assertEquals(new Fraction(5, 2), new Fraction(-5, 2).abs());
+   	}
+    
+    @Test
     public void divide() {
    	}
     
