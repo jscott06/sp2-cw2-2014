@@ -62,6 +62,21 @@ public class Fraction {
         int denom = this.getDenominator() * frac.getDenominator();
         return new Fraction(num, denom);
     }
+    
+    public Fraction add(Fraction frac) {
+    	
+    	int lcm = myLcm(getDenominator(), frac.getDenominator());
+    	int num1 = (this.getNumerator() * (lcm / this.getDenominator()));
+    	int num2 = (frac.getNumerator() * (lcm / frac.getDenominator()));
+        int num = num1 + num2;
+        int denom = lcm;
+        return new Fraction(num, denom);
+    }
+    
+    private int myLcm(int denumA, int denumB) {
+        int a = denumA * denumB;
+        return a;
+    }
 
     private int myGcd(int a, int b) {
         while (b != 0) {
