@@ -34,9 +34,11 @@ public class FractionCalculator {
 		return splittedString;
 	}
 
-	public int[] extractNumAndDenom(String string) {
-		
-		return null;
+	public int[] toNumber(String[] stringArray) {
+		int[] numberArray = new int[2];
+		numberArray[0] = Integer.parseInt(stringArray[0]);
+		numberArray[1] = Integer.parseInt(stringArray[1]);
+		return numberArray;
 	}
 	
 	

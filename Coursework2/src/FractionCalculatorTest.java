@@ -21,7 +21,8 @@ public class FractionCalculatorTest {
     
     @Test
     public void toNumber(){
-    	int[] testArray = calc.toNumber("1", "3");
+    	String[] numAndDenom = {"1", "3"};
+    	int[] testArray = calc.toNumber(numAndDenom);
     	int[] checkArray = {1, 3};
     	assertArrayEquals(checkArray, testArray);
     }
