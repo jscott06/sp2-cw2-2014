@@ -51,10 +51,16 @@ public class FractionCalculator {
 		switch (operation) {
         case "+":  
       	  	result = memory.add(fraction);
-        	  break;
+        	break;
         case "-":  
         	result = memory.subtract(fraction);
-        	  break;
+        	break;
+        case "*":  
+        	result = memory.multiply(fraction);
+        	break;
+        case "/":  
+        	result = memory.divide(fraction);
+        	break;
 		}
 		return result;
 	}	
