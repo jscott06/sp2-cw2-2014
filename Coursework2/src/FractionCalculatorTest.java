@@ -57,5 +57,14 @@ public class FractionCalculatorTest {
     	fraction = new Fraction(1, 2);
     	assertEquals(new Fraction(8, 3), calc.calculate(memory, operation, fraction));
     }
-
+    
+    public void operateOnMemory(){
+    	Fraction memory = new Fraction(1, -2);
+    	String operation = "abs";
+    	assertEquals(new Fraction(1, 2), calc.operateOnMemory(memory, operation));
+    	
+    	memory = new Fraction(1, 2);
+    	operation = "negate";
+    	assertEquals(new Fraction(-1, 2), calc.operateOnMemory(memory, operation));
+    }
 }
