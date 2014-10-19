@@ -17,7 +17,12 @@ public class Fraction {
 
     @Override
     public String toString() {
-        return "" + getNumerator() + '/' + getDenominator();
+    	if (getDenominator() == 1)
+    	{
+    		return "" + getNumerator();
+    	} else {
+    		return "" + getNumerator() + '/' + getDenominator(); 
+        }
     }
 
     public int getNumerator() {
