@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class FractionCalculator {
 	static Scanner input = new Scanner(System.in);
-	final static String DELIMITER = " ";
+	final static String SPACE = " ";
+	final static String SLASH = "/";
 	static String[] splittedString;
 	
 	public static void main(String[] args) {
@@ -18,9 +19,25 @@ public class FractionCalculator {
 		i = input.nextLine();
 		return i;
 	}
-
-	public String[] splitBySpaces(String string) {
-		splittedString = string.split(DELIMITER);
+	
+	public String[] split(String string, String delimitator) {
+		splittedString = string.split(delimitator);
 		return splittedString;
 	}
+
+	public String[] splitBySpaces(String string) {
+		splittedString = split(string, SPACE);
+		return splittedString;
+	}
+	public String[] splitBySlash(String string) {
+		splittedString = split(string, SLASH);
+		return splittedString;
+	}
+
+	public int[] extractNumAndDenom(String string) {
+		
+		return null;
+	}
+	
+	
 }
