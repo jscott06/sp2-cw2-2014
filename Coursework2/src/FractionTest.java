@@ -19,6 +19,7 @@ public class FractionTest {
     
     @Test
 	public void divideByZero() {
+    	// TODO this should exit the calculator
     	assertEquals(new Fraction(1, 0), new Fraction(1, 0));
 	}
     

@@ -1,23 +1,25 @@
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class FractionCalculatorTest {
 	
 	FractionCalculator calc = new FractionCalculator();
+	FractionCalculator calc1 = new FractionCalculator();
     
-    @Test
-	public void splitBySpaces() {
-    	String[] testArray = calc.splitBySpaces("Jacopo Scotti SP2 Coursework2");
-    	String[] checkArray = {"Jacopo", "Scotti", "SP2", "Coursework2"};
-    	assertArrayEquals(checkArray, testArray);
-	}
-    
-    @Test
-    public void splitBySlash() {
-    	String[] testArray = calc.splitBySlash("1/3");
-    	String[] checkArray = {"1", "3"};
-    	assertArrayEquals(checkArray, testArray);
-	}
+//    @Test
+//	public void splitBySpaces() {
+//    	String[] testArray = calc.splitBySpaces("Jacopo Scotti SP2 Coursework2");
+//    	String[] checkArray = {"Jacopo", "Scotti", "SP2", "Coursework2"};
+//    	assertArrayEquals(checkArray, testArray);
+//	}
+//    
+//    @Test
+//    public void splitBySlash() {
+//    	String[] testArray = calc.splitBySlash("1/3");
+//    	String[] checkArray = {"1", "3"};
+//    	assertArrayEquals(checkArray, testArray);
+//	}
     
     @Test
     public void toNumber(){
@@ -70,8 +72,19 @@ public class FractionCalculatorTest {
     }
     
     @Test
-    public void readAndCalculate(){
-    	String input = "1/2 + 1/3";
-    	assertEquals(new Fraction(5, 6), calc.readAndCalculate(input));
+    public void readAndCalculate1(){
+    	FractionCalculator calc1 = new FractionCalculator();
+    	String[] input = {"1/2"};
+    	calc1.readAndCalculate(input);
+    	assertEquals(new Fraction(1, 2), calc1.getMemory());
+
+    	FractionCalculator calc2 = new FractionCalculator();
+    	String[] input2 = {"1/2", "+", "1/3"};
+    	calc2.readAndCalculate(input2);
+    	assertEquals(new Fraction(5, 6), calc2.getMemory());
+    	
+// TODO allow fractions with denominator = 1
+//    	String[] input3 = {"1/2", "+", "1"};
+//    	assertEquals(new Fraction(3, 2), calc.readAndCalculate(input3));
     }
 }
