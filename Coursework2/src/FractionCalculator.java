@@ -63,5 +63,18 @@ public class FractionCalculator {
         	break;
 		}
 		return result;
+	}
+
+	public Object operateOnMemory(Fraction memory, String operation) {
+		Fraction result = new Fraction(1, 1);
+		switch (operation) {
+        case "abs":  
+      	  	result = memory.abs();
+        	break;
+        case "negate":  
+        	result = memory.negate();
+        	break;
+		}
+		return result;
 	}	
 }
