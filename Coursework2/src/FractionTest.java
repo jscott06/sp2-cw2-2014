@@ -69,5 +69,15 @@ public class FractionTest {
     	assertEquals(new Fraction(-1, 29), new Fraction(1, 29).negate());
     	assertEquals(new Fraction(-5, 2), new Fraction(5, 2).negate());
    	}
+    
+    @Test
+    public void print(){
+    	Fraction f1 = new Fraction(1,2);
+    	assertEquals("1/2", f1.toString());
+    	Fraction f2 = new Fraction(5,-9);
+    	assertEquals("5/-9", f2.toString());
+    	Fraction f = new Fraction(3,1);
+    	assertEquals("3", f.toString());
+    }
 
 }
