@@ -35,6 +35,16 @@ public class FractionCalculatorTest {
     	assertEquals(true, checkFraction.equals(testFraction));
     }
     
-    
+    @Test
+    public void calculate(){
+    	Fraction memory = new Fraction(1, 2);
+    	Fraction fraction = new Fraction(1, 3);
+    	String operation = "+";
+    	assertEquals(new Fraction(5, 6), calc.calculate(memory, operation, fraction));
+    	operation = "-";
+    	memory = new Fraction(5, 6);
+    	fraction = new Fraction(1, 6);
+    	assertEquals(new Fraction(2, 3), calc.calculate(memory, operation, fraction));
+    }
 
 }

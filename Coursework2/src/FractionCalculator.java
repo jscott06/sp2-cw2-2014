@@ -5,11 +5,11 @@ public class FractionCalculator {
 	final static String SPACE = " ";
 	final static String SLASH = "/";
 	static String[] splittedString;
+	static FractionCalculator calc = new FractionCalculator();
 	
 	public static void main(String[] args) {
 			
 		String input = getInput();
-		FractionCalculator calc = new FractionCalculator();
 		calc.splitBySpaces(input);
 	}
 	
@@ -45,6 +45,17 @@ public class FractionCalculator {
 		Fraction frac = new Fraction(numberArray[0], numberArray[1]);
 		return frac;
 	}
-	
-	
+
+	public Object calculate(Fraction memory, String operation, Fraction fraction) {
+		Fraction result = new Fraction(1, 1);
+		switch (operation) {
+        case "+":  
+      	  	result = memory.add(fraction);
+        	  break;
+        case "-":  
+        	result = memory.subtract(fraction);
+        	  break;
+		}
+		return result;
+	}	
 }
