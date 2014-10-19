@@ -40,6 +40,11 @@ public class FractionCalculator {
 		numberArray[1] = Integer.parseInt(stringArray[1]);
 		return numberArray;
 	}
+
+	public Fraction toFraction(int[] numberArray) {
+		Fraction frac = new Fraction(numberArray[0], numberArray[1]);
+		return frac;
+	}
 	
 	
 }
