@@ -10,4 +10,12 @@ public class FractionCalculatorTest {
     	String[] checkArray = {"Jacopo", "Scotti", "SP2", "Coursework2"};
     	assertArrayEquals(checkArray, testArray);
 	}
+    
+    public void extractNumAndDenom() {
+    	FractionCalculator calc = new FractionCalculator();
+    	int[] testArray = calc.extractNumAndDenom("1/3");
+    	int[] checkArray = {1,3};
+    	assertArrayEquals(checkArray, testArray);
+    	// to test negative numbers
+    }
 }
