@@ -11,11 +11,11 @@ public class FractionCalculatorTest {
     	assertArrayEquals(checkArray, testArray);
 	}
     
-    public void extractNumAndDenom() {
+    public void splitBySlash() {
     	FractionCalculator calc = new FractionCalculator();
-    	int[] testArray = calc.extractNumAndDenom("1/3");
-    	int[] checkArray = {1,3};
+    	String[] testArray = calc.splitBySlash("1/3");
+    	String[] checkArray = {"1", "3"};
     	assertArrayEquals(checkArray, testArray);
-    	// to test negative numbers
-    }
+	}
+
 }
