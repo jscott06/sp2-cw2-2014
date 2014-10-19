@@ -1,8 +1,6 @@
 /**
  * Created by keith for the second coursework assignment.
  */
-import static java.lang.Math.*;
-
 public class Fraction {
     private int numerator;
     private int denominator;
@@ -83,8 +81,11 @@ public class Fraction {
     }
     
     public Fraction abs() {
-    	int num = Math.abs(this.getNumerator());
-        int denom = Math.abs(this.getDenominator());
+    	int num = this.getNumerator();
+    	int denom = this.getDenominator();
+    	if (!( num < 0 && denom < 0 || num > 0 && denom > 0 )) {
+    		num = - num;
+    	}
         return new Fraction(num, denom);
     }
     
