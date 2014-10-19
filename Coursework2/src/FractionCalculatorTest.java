@@ -26,5 +26,15 @@ public class FractionCalculatorTest {
     	int[] checkArray = {1, 3};
     	assertArrayEquals(checkArray, testArray);
     }
+    
+    @Test
+    public void toFraction(){
+    	int[] numAndDenom = {1, 3};
+    	Fraction testFraction = calc.toFraction(numAndDenom);
+    	Fraction checkFraction = new Fraction(1, 3);
+    	assertEquals(true, checkFraction.equals(testFraction));
+    }
+    
+    
 
 }
