@@ -35,20 +35,21 @@ public class FractionTest {
    	public void multiply() {
     	assertEquals(new Fraction(1, 4), new Fraction(1, 2).multiply(new Fraction(1, 2)));
     	assertEquals(new Fraction(3, 10), new Fraction(1, 2).multiply(new Fraction(3, 5)));
+    	assertEquals(new Fraction(-3, 10), new Fraction(1, 2).multiply(new Fraction(-3, 5)));
    	}
     
     @Test
     public void add() {
     	assertEquals(new Fraction(7, 10), new Fraction(1, 2).add(new Fraction(1, 5)));
     	assertEquals(new Fraction(11, 12), new Fraction(2, 3).add(new Fraction(1, 4)));
-    	// to test addition with non positive fractions
+    	assertEquals(new Fraction(2, 3), new Fraction(-2, 3).add(new Fraction(4, 3)));
    	}
     
     @Test
     public void subtract() {
     	assertEquals(new Fraction(2, 15), new Fraction(1, 3).subtract(new Fraction(1, 5)));
     	assertEquals(new Fraction(1, 63), new Fraction(4, 7).subtract(new Fraction(5, 9)));
-    	// to test subtraction with non positive fractions
+    	assertEquals(new Fraction(2, 7), new Fraction(-1, 7).subtract(new Fraction(-3, 7)));
    	}
     
     @Test
@@ -62,6 +63,7 @@ public class FractionTest {
     public void divide() {
     	assertEquals(new Fraction(5, 6), new Fraction(1, 6).divide(new Fraction(1, 5)));
     	assertEquals(new Fraction(6, 7), new Fraction(3, 7).divide(new Fraction(1, 2)));
+    	assertEquals(new Fraction(-6, 7), new Fraction(-3, 7).divide(new Fraction(1, 2)));
    	}
     
     @Test
