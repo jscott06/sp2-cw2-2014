@@ -76,9 +76,13 @@ public class FractionCalculator {
 	public void operateOnMemory(String operation) {
 		switch (operation) {
         case "abs":  
+        case "A":
+        case "a":
         	setMemory(getMemory().abs());
         	break;
-        case "negate":  
+        case "neg":  
+        case "N":
+        case "n":
         	setMemory(getMemory().negate());
         	break;
 		}
@@ -110,8 +114,12 @@ public class FractionCalculator {
 	        case "/":
 	        	setOperator(i);
 	        	break;
-	        case "negate": // no break
+	        case "neg": // no break
+	        case "N":
+	        case "n":
 	        case "abs":
+	        case "a":
+	        case "A":
 	        	operateOnMemory(i);
 	        	break;
 	        default: 

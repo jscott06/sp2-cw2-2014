@@ -67,7 +67,7 @@ public class FractionCalculatorTest {
     	assertEquals(new Fraction(1, 2), calc.getMemory());
     	
     	calc.setMemory(new Fraction(1, 2));
-    	operation = "negate";
+    	operation = "neg";
     	calc.operateOnMemory(operation);
     	assertEquals(new Fraction(-1, 2), calc.getMemory());
     }
@@ -88,7 +88,7 @@ public class FractionCalculatorTest {
     	
     	//Negate
     	FractionCalculator calc3 = new FractionCalculator();
-    	String[] input3 = {"1/2", "+", "1/3", "negate"};
+    	String[] input3 = {"1/2", "+", "1/3", "neg"};
     	calc3.readAndCalculate(input3);
     	assertEquals(new Fraction(-5, 6), calc3.getMemory());
     	
