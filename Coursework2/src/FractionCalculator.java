@@ -119,6 +119,7 @@ public class FractionCalculator {
 	        	break;
 	        case "abs":  
 	        	setOperator("");
+	        	setMemory(getMemory().abs());
 	        	break;
 	        default: 
 	        	String[] stringNumAndDen = split(i, "/");
