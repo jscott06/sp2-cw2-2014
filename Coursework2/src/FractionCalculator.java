@@ -73,17 +73,15 @@ public class FractionCalculator {
 		return result;
 	}
 
-	public Fraction operateOnMemory(Fraction memory, String operation) {
-		Fraction result = new Fraction(1, 1);
+	public void operateOnMemory(String operation) {
 		switch (operation) {
         case "abs":  
-      	  	result = memory.abs();
+        	setMemory(getMemory().abs());
         	break;
         case "negate":  
-        	result = memory.negate();
+        	setMemory(getMemory().negate());
         	break;
 		}
-		return result;
 	}
 	
 	public void setOperator(String operator){
@@ -119,12 +117,12 @@ public class FractionCalculator {
 	        	setOperator("/"); // refactor
 	        	break;
 	        case "negate":  
+	        	operateOnMemory(i);
 	        	setOperator("");
-	        	setMemory(getMemory().negate());
 	        	break;
 	        case "abs":  
+	        	operateOnMemory(i);
 	        	setOperator("");
-	        	setMemory(getMemory().abs());
 	        	break;
 	        default: 
 	        	String[] stringNumAndDen = split(i, "/");

@@ -61,13 +61,15 @@ public class FractionCalculatorTest {
     
     @Test
     public void operateOnMemory(){
-    	Fraction memory = new Fraction(1, -2);
+    	calc.setMemory(new Fraction(1, -2));
     	String operation = "abs";
-    	assertEquals(new Fraction(1, 2), calc.operateOnMemory(memory, operation));
+    	calc.operateOnMemory(operation);
+    	assertEquals(new Fraction(1, 2), calc.getMemory());
     	
-    	memory = new Fraction(1, 2);
+    	calc.setMemory(new Fraction(1, 2));
     	operation = "negate";
-    	assertEquals(new Fraction(-1, 2), calc.operateOnMemory(memory, operation));
+    	calc.operateOnMemory(operation);
+    	assertEquals(new Fraction(-1, 2), calc.getMemory());
     }
     
     @Test
