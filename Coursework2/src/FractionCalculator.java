@@ -85,6 +85,11 @@ public class FractionCalculator {
         case "n":
         	setMemory(getMemory().negate());
         	break;
+        case "clear":  
+        case "C":
+        case "c":
+        	setMemory(clear());
+        	break;
 		}
 	}
 	
@@ -103,6 +108,10 @@ public class FractionCalculator {
 	public Fraction getMemory(){
 		return memory;
 	}
+	
+	public Fraction clear(){
+		return new Fraction(0);
+	}
 
 	public void readAndCalculate(String[] input) {
 		// add here do-while loop for keeping asking input using new operator values "continue" and "Q"
@@ -120,6 +129,9 @@ public class FractionCalculator {
 	        case "abs":
 	        case "a":
 	        case "A":
+	        case "clear":  
+	        case "C":
+	        case "c":
 	        	operateOnMemory(i);
 	        	break;
 	        default: 

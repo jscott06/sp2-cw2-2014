@@ -14,10 +14,21 @@ public class Fraction {
         setNumerator(num / gcd);
         setDenominator(denom / gcd);
     }
+    public Fraction(int num) {
+    	int denom = 1;
+    	int gcd = myGcd(num, denom);
+    	setNumerator(num / gcd);
+    	setDenominator(denom / gcd);  
+    }
 
     @Override
     public String toString() {
-    	return "" + getNumerator() + '/' + getDenominator(); 
+    	if (getDenominator() == 1)
+    	{
+    		return "" + getNumerator();
+    	} else {
+    		return "" + getNumerator() + '/' + getDenominator(); 
+    	}
     }
 
     public int getNumerator() {

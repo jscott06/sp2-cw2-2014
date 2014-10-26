@@ -103,5 +103,12 @@ public class FractionCalculatorTest {
     	String[] input5 = {"1/2", "+", "1"};
     	calc5.readAndCalculate(input5);
     	assertEquals(new Fraction(3, 2), calc5.getMemory());
+    	
+    	// Use clear function
+    	FractionCalculator calc6 = new FractionCalculator();
+    	String[] input6 = {"1/2", "+", "1", "C"};
+    	calc6.readAndCalculate(input6);
+    	assertEquals(new Fraction(0,5), calc6.getMemory());
+    	assertEquals(new Fraction(0), calc6.getMemory());
     }
 }
