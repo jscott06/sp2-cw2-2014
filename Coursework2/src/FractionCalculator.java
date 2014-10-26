@@ -104,25 +104,15 @@ public class FractionCalculator {
 		// add here do-while loop for keeping asking input using new operator values "continue" and "Q"
 		for (String i : input) {
 			switch (i) {
-	        case "+":  
-	      	  	setOperator("+");
+	        case "+": // no break
+	        case "-":
+	        case "*":
+	        case "/":
+	        	setOperator(i);
 	        	break;
-	        case "-":  
-	        	setOperator("-");
-	        	break;
-	        case "*":  
-	        	setOperator("*");
-	        	break;
-	        case "/":  
-	        	setOperator("/"); // refactor
-	        	break;
-	        case "negate":  
+	        case "negate": // no break
+	        case "abs":
 	        	operateOnMemory(i);
-	        	setOperator("");
-	        	break;
-	        case "abs":  
-	        	operateOnMemory(i);
-	        	setOperator("");
 	        	break;
 	        default: 
 	        	String[] stringNumAndDen = split(i, "/");
