@@ -130,16 +130,16 @@ public class FractionCalculator {
 	        	if (getOperator() == "not initialised") {
 	            	setMemory(f);
 	            	setOperator("");
-	            	System.out.println("HERERERERERER");
+//	            	System.out.println("HERERERERERER");
 	        	} else {
 		        	setMemory(calculate(getMemory(), getOperator(), f));
 	        	}
 	        	break;
 			}
-			System.out.print("Input");
-			System.out.println(i);
-			System.out.print("Memory:");
-			System.out.println(getMemory());
+//			System.out.print("Input");
+//			System.out.println(i);
+//			System.out.print("Memory:");
+//			System.out.println(getMemory());
 		}
 	}
 

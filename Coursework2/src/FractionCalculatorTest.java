@@ -5,21 +5,20 @@ import org.junit.Test;
 public class FractionCalculatorTest {
 	
 	FractionCalculator calc = new FractionCalculator();
-	FractionCalculator calc1 = new FractionCalculator();
     
-//    @Test
-//	public void splitBySpaces() {
-//    	String[] testArray = calc.splitBySpaces("Jacopo Scotti SP2 Coursework2");
-//    	String[] checkArray = {"Jacopo", "Scotti", "SP2", "Coursework2"};
-//    	assertArrayEquals(checkArray, testArray);
-//	}
-//    
-//    @Test
-//    public void splitBySlash() {
-//    	String[] testArray = calc.splitBySlash("1/3");
-//    	String[] checkArray = {"1", "3"};
-//    	assertArrayEquals(checkArray, testArray);
-//	}
+    @Test
+	public void splitBySpace() {
+    	String[] testArray = calc.split("Jacopo Scotti SP2 Coursework2", " ");
+    	String[] checkArray = {"Jacopo", "Scotti", "SP2", "Coursework2"};
+    	assertArrayEquals(checkArray, testArray);
+	}
+    
+    @Test
+    public void splitBySlash() {
+    	String[] testArray = calc.split("1/3", "/");
+    	String[] checkArray = {"1", "3"};
+    	assertArrayEquals(checkArray, testArray);
+	}
     
     @Test
     public void toNumber(){
