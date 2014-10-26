@@ -33,8 +33,7 @@ public class FractionCalculator {
 	}
 	
 	public String[] split(String string, String delimitator) {
-		splittedString = string.split(delimitator);
-		return splittedString;
+		return string.split(delimitator);
 	}
 
 	public int[] toNumber(String[] stringArray) {
@@ -54,23 +53,21 @@ public class FractionCalculator {
 		return frac;
 	}
 
-	public Fraction calculate(Fraction memory, String operation, Fraction fraction) {
-		Fraction result = new Fraction(1, 1);
+	public void calculate(Fraction memory, String operation, Fraction fraction) {
 		switch (operation) {
         case "+":  
-      	  	result = memory.add(fraction);
+      	  	setMemory(memory.add(fraction));
         	break;
         case "-":  
-        	result = memory.subtract(fraction);
+        	setMemory(memory.subtract(fraction));
         	break;
         case "*":  
-        	result = memory.multiply(fraction);
+        	setMemory(memory.multiply(fraction));
         	break;
         case "/":  
-        	result = memory.divide(fraction);
+        	setMemory(memory.divide(fraction));
         	break;
 		}
-		return result;
 	}
 
 	public void operateOnMemory(String operation) {
@@ -142,7 +139,7 @@ public class FractionCalculator {
 	            	setMemory(f);
 	            	setOperator("");
 	        	} else {
-		        	setMemory(calculate(getMemory(), getOperator(), f));
+		        	calculate(getMemory(), getOperator(), f);
 	        	}
 	        	break;
 			}

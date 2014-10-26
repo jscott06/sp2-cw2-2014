@@ -41,22 +41,26 @@ public class FractionCalculatorTest {
     	Fraction memory = new Fraction(1, 2);
     	String operation = "+";
     	Fraction fraction = new Fraction(1, 3);
-    	assertEquals(new Fraction(5, 6), calc.calculate(memory, operation, fraction));
+    	calc.calculate(memory, operation, fraction);
+    	assertEquals(new Fraction(5, 6), calc.getMemory());
     	
     	memory = new Fraction(5, 6);
     	operation = "-";
     	fraction = new Fraction(1, 6);
-    	assertEquals(new Fraction(2, 3), calc.calculate(memory, operation, fraction));
+    	calc.calculate(memory, operation, fraction);
+    	assertEquals(new Fraction(2, 3), calc.getMemory());
     	
     	memory = new Fraction(2, 3);
     	operation = "*";
     	fraction = new Fraction(2, 1);
-    	assertEquals(new Fraction(4, 3), calc.calculate(memory, operation, fraction));
+    	calc.calculate(memory, operation, fraction);
+    	assertEquals(new Fraction(4, 3), calc.getMemory());
     	
     	memory = new Fraction(4, 3);
     	operation = "/";
     	fraction = new Fraction(1, 2);
-    	assertEquals(new Fraction(8, 3), calc.calculate(memory, operation, fraction));
+    	calc.calculate(memory, operation, fraction);
+    	assertEquals(new Fraction(8, 3), calc.getMemory());
     }
     
     @Test
@@ -110,5 +114,13 @@ public class FractionCalculatorTest {
     	calc6.readAndCalculate(input6);
     	assertEquals(new Fraction(0,5), calc6.getMemory());
     	assertEquals(new Fraction(0), calc6.getMemory());
+    	
+    	// Double input
+    	FractionCalculator calc7 = new FractionCalculator();
+    	String[] input7 = {"1/2", "+", "1"};
+    	String[] input7b = {"+", "1", "*", "2"};
+    	calc7.readAndCalculate(input7);
+    	calc7.readAndCalculate(input7b);
+    	assertEquals(new Fraction(5), calc7.getMemory());
     }
 }
