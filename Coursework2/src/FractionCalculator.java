@@ -113,6 +113,13 @@ public class FractionCalculator {
 	        case "/":  
 	        	setOperator("/"); // refactor
 	        	break;
+	        case "negate":  
+	        	setOperator("");
+	        	setMemory(getMemory().negate());
+	        	break;
+	        case "abs":  
+	        	setOperator("");
+	        	break;
 	        default: 
 	        	String[] stringNumAndDen = split(i, "/");
 	        	int[] numAndDen = toNumber(stringNumAndDen);
