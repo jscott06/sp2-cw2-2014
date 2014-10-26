@@ -82,6 +82,11 @@ public class FractionCalculatorTest {
     	calc2.readAndCalculate(input2);
     	assertEquals(new Fraction(5, 6), calc2.getMemory());
     	
+    	FractionCalculator calc3 = new FractionCalculator();
+    	String[] input3 = {"1/2", "+", "1/3", "negate"};
+    	calc3.readAndCalculate(input3);
+    	assertEquals(new Fraction(-5, 6), calc3.getMemory());
+    	
 // TODO allow fractions with denominator = 1
 //    	String[] input3 = {"1/2", "+", "1"};
 //    	assertEquals(new Fraction(3, 2), calc.readAndCalculate(input3));

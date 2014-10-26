@@ -37,16 +37,6 @@ public class FractionCalculator {
 		return splittedString;
 	}
 
-//	public String[] splitBySpaces(String string) {
-////		System.out.println(string);
-//		splittedString = split(string, SPACE);
-//		return splittedString;
-//	}
-//	public String[] splitBySlash(String string) {
-//		splittedString = split(string, SLASH);
-//		return splittedString;
-//	}
-
 	public int[] toNumber(String[] stringArray) {
 		int[] numberArray = new int[2];
 		numberArray[0] = Integer.parseInt(stringArray[0]);
@@ -130,7 +120,6 @@ public class FractionCalculator {
 	        	if (getOperator() == "not initialised") {
 	            	setMemory(f);
 	            	setOperator("");
-//	            	System.out.println("HERERERERERER");
 	        	} else {
 		        	setMemory(calculate(getMemory(), getOperator(), f));
 	        	}
