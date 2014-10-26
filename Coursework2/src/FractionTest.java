@@ -80,5 +80,13 @@ public class FractionTest {
     	Fraction f = new Fraction(3,1);
     	assertEquals("3", f.toString());
     }
+    
+    @Test
+    public void integer(){
+    	Fraction f1 = new Fraction(1);
+    	assertEquals("1/1", f1.toString());
+    }
+    
+    
 
 }
