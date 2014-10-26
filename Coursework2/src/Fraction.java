@@ -14,6 +14,13 @@ public class Fraction {
         setNumerator(num / gcd);
         setDenominator(denom / gcd);
     }
+    
+    public Fraction(int num) {
+        int denom = 1;
+        int gcd = myGcd(num, denom);
+        setNumerator(num / gcd);
+        setDenominator(denom / gcd);
+    }
 
     @Override
     public String toString() {

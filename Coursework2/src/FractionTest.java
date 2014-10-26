@@ -84,9 +84,14 @@ public class FractionTest {
     @Test
     public void integer(){
     	Fraction f1 = new Fraction(1);
-    	assertEquals("1/1", f1.toString());
+    	assertEquals("1", f1.toString());
+    	
+    	Fraction f2 = new Fraction(-1);
+    	assertEquals("-1", f2.toString());
+    	
+    	Fraction f3 = new Fraction(10);
+    	assertEquals("10", f3.toString());
     }
-    
     
 
 }
