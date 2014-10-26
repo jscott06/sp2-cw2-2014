@@ -72,27 +72,34 @@ public class FractionCalculatorTest {
     
     @Test
     public void readAndCalculate1(){
+    	//1 fraction
     	FractionCalculator calc1 = new FractionCalculator();
     	String[] input = {"1/2"};
     	calc1.readAndCalculate(input);
     	assertEquals(new Fraction(1, 2), calc1.getMemory());
-
+    	
+    	//Add 2 fractions
     	FractionCalculator calc2 = new FractionCalculator();
     	String[] input2 = {"1/2", "+", "1/3"};
     	calc2.readAndCalculate(input2);
     	assertEquals(new Fraction(5, 6), calc2.getMemory());
     	
+    	//Negate
     	FractionCalculator calc3 = new FractionCalculator();
     	String[] input3 = {"1/2", "+", "1/3", "negate"};
     	calc3.readAndCalculate(input3);
     	assertEquals(new Fraction(-5, 6), calc3.getMemory());
     	
+    	//Absolute value
     	FractionCalculator calc4 = new FractionCalculator();
     	String[] input4 = {"-1/2", "+", "-1/3", "abs"};
     	calc4.readAndCalculate(input4);
     	assertEquals(new Fraction(5, 6), calc4.getMemory());
-// TODO allow fractions with denominator = 1
-//    	String[] input3 = {"1/2", "+", "1"};
-//    	assertEquals(new Fraction(3, 2), calc.readAndCalculate(input3));
+    	
+    	// Allow integers
+    	FractionCalculator calc5 = new FractionCalculator();
+    	String[] input5 = {"1/2", "+", "1"};
+    	calc5.readAndCalculate(input5);
+    	assertEquals(new Fraction(3, 2), calc5.getMemory());
     }
 }

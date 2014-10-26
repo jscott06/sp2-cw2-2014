@@ -39,8 +39,13 @@ public class FractionCalculator {
 
 	public int[] toNumber(String[] stringArray) {
 		int[] numberArray = new int[2];
+		
 		numberArray[0] = Integer.parseInt(stringArray[0]);
-		numberArray[1] = Integer.parseInt(stringArray[1]);
+		if (stringArray.length == 1) {
+			numberArray[1] = 1;
+		} else {
+			numberArray[1] = Integer.parseInt(stringArray[1]);
+		}
 		return numberArray;
 	}
 

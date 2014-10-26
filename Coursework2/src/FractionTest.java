@@ -36,7 +36,8 @@ public class FractionTest {
     	assertEquals(new Fraction(1, 4), new Fraction(1, 2).multiply(new Fraction(1, 2)));
     	assertEquals(new Fraction(3, 10), new Fraction(1, 2).multiply(new Fraction(3, 5)));
     	assertEquals(new Fraction(-3, 10), new Fraction(1, 2).multiply(new Fraction(-3, 5)));
-   	}
+    	assertEquals(new Fraction(4, 3), new Fraction(2, 1).multiply(new Fraction(2, 3)));
+    }
     
     @Test
     public void add() {
@@ -80,20 +81,7 @@ public class FractionTest {
     	Fraction f2 = new Fraction(5,-9);
     	assertEquals("5/-9", f2.toString());
     	Fraction f = new Fraction(3,1);
-    	assertEquals("3", f.toString());
+    	assertEquals("3/1", f.toString());
     }
-    
-    @Test
-    public void integer(){
-    	Fraction f1 = new Fraction(1);
-    	assertEquals("1", f1.toString());
-    	
-    	Fraction f2 = new Fraction(-1);
-    	assertEquals("-1", f2.toString());
-    	
-    	Fraction f3 = new Fraction(10);
-    	assertEquals("10", f3.toString());
-    }
-    
 
 }
