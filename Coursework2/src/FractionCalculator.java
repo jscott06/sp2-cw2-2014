@@ -4,22 +4,23 @@ public class FractionCalculator {
 	
 	final static String SPACE = " ";
 	final static String SLASH = "/";
-	public String[] splittedString;
+	public static String[] splittedString;
 	public String operator = "not initialised";
-	public Fraction memory;
+	public Fraction memory = new Fraction(0);
 	
 	public static void main(String[] args) {
 		
-//		String input = getInput();
-//		String input = "1/4 + 1/4 + 1/4";
-//		splittedString = split(input, " ");
-//		calc.readAndCalculate(splittedString);
-//		System.out.println(calc.getMemory());
-//		System.out.println("END");
-//		String input2 = "1/5 + 1/5 + 1/5";
-//		splittedString = split(input2, " ");
-//		calc.readAndCalculate(splittedString);
-//		System.out.println(getMemory());
+		String input = getInput();
+		splittedString = split(input, " ");
+		FractionCalculator calc = new FractionCalculator();
+		calc.readAndCalculate(splittedString);
+		System.out.println(calc.getMemory());
+		System.out.println("END");
+		
+		// TODO
+		// - Allow multi line input with loop and break character
+		// - Print total everytime memory is being 'touched'
+		// - Wrap everything (Input, Read input, Split input, Calculate, Return Total and ask input in a single method
 		
 	}
 	
@@ -32,7 +33,7 @@ public class FractionCalculator {
 		return i;
 	}
 	
-	public String[] split(String string, String delimitator) {
+	public static String[] split(String string, String delimitator) {
 		return string.split(delimitator);
 	}
 
@@ -132,6 +133,7 @@ public class FractionCalculator {
 	        	}
 			} else {
 				System.out.println("Unexpected input");
+				break;
 			}
 //			System.out.print("Input");
 //			System.out.println(i);
