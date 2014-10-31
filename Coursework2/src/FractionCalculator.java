@@ -113,26 +113,15 @@ public class FractionCalculator {
 	public void readAndCalculate(String[] input) {
 		// add here do-while loop for keeping asking input using new operator values "continue" and "Q"
 		for (String i : input) {
-			switch (i) {
-	        case "+": // no break
-	        case "-":
-	        case "*":
-	        case "/":
-	        	setOperator(i);
-	        	break;
-	        case "neg": // no break
-	        case "N":
-	        case "n":
-	        case "abs":
-	        case "a":
-	        case "A":
-	        case "clear":  
-	        case "C":
-	        case "c":
-	        	operateOnMemory(i);
-	        	break;
-	        default: 
-	        	String[] stringNumAndDen = split(i, "/");
+			if (i.matches("[-*/+]{1}")){
+				// all the operations
+				setOperator(i);
+			} else if (i.matches("((neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)){1}")) {
+				// all the functions
+				operateOnMemory(i);
+			} else if (i.matches("(-{0,1}[0-9]+\\/{1}-{0,1}[1-9]+)|(-{0,1}[0-9]+)")) {
+				// every fraction negative or positive with denominator!= 0 + whole numbers
+				String[] stringNumAndDen = split(i, "/");
 	        	int[] numAndDen = toNumber(stringNumAndDen);
 	        	Fraction f = toFraction(numAndDen); // refactor
 	        	if (getOperator() == "not initialised") {
@@ -141,7 +130,8 @@ public class FractionCalculator {
 	        	} else {
 		        	calculate(getMemory(), getOperator(), f);
 	        	}
-	        	break;
+			} else {
+				System.out.println("Unexpected input");
 			}
 //			System.out.print("Input");
 //			System.out.println(i);
