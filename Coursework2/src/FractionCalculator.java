@@ -28,7 +28,6 @@ public class FractionCalculator {
 		// - Allow multi line input with loop and break character
 		// - Wrap everything (Input, Read input, Split input, Calculate, Return Total and ask input in a single method
 		// - Create a printing method that returns what to print (Testable)
-		// - if there is already an operator saved on memory raise exception and quit (ie 1 + + 1 not allowed)
 		
 		// remaining main method requisites
 		/*
@@ -83,6 +82,7 @@ public class FractionCalculator {
         	setMemory(memory.divide(fraction));
         	break;
 		}
+		setOperator("");
 	}
 
 	public void operateOnMemory(String operation) {
@@ -103,6 +103,7 @@ public class FractionCalculator {
         	setMemory(clear());
         	break;
 		}
+		setOperator("");
 	}
 	
 	public void setOperator(String operator){
@@ -135,23 +136,28 @@ public class FractionCalculator {
 	public void initialiseOrOperateOnMemory(String input){
 		if (getOperator() == "not initialised") {
         	setMemory(inputToFraction(input));
-        	setOperator("");
     	} else {
         	calculate(getMemory(), getOperator(), inputToFraction(input));
     	}
+		setOperator("");
 	}
 
 	public void readAndCalculate(String[] inputLine) {
 		for (String element : inputLine) {
-			
-			if (element.matches("[-*/+]{1}")){
+			if (getOperator() != "" && (element.matches("((neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)|[-*/+]){1}"))) 
+			{
+				setMemory(ZERO);
+				System.out.println("Error");
+				break;
+			} else if (element.matches("[-*/+]{1}")) {
 				// I learnt how to use regular expressions here: http://www.regexr.com/
 				// all the operations
 				setOperator(element);
 			} else if (element.matches("((neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)){1}")) {
 				// all the functions
 				operateOnMemory(element);
-			} else if (element.matches("(-{0,1}[0-9]+\\/{1}-{0,1}[1-9]+)|(-{0,1}[0-9]+)")) {
+			
+			}else if (element.matches("(-{0,1}[0-9]+\\/{1}-{0,1}[1-9]+)|(-{0,1}[0-9]+)")) {
 				// every fraction negative or positive with denominator!= 0 + whole numbers
 	        	initialiseOrOperateOnMemory(element);
 			} else if (element.matches("((q)|(Q)|(quit)){1}")) {
