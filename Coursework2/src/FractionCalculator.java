@@ -6,26 +6,36 @@ public class FractionCalculator {
 	final static String SLASH = "/";
 	public static String[] splittedString;
 	public String operator = "not initialised";
-	public Fraction memory = new Fraction(0);
+	public Fraction memory;
+	public static Fraction ZERO = new Fraction(0);
 	
 	public static void main(String[] args) {
 		
-		// add here do-while loop for keeping asking input using new operator values "continue" and "Q"
 		FractionCalculator calc = new FractionCalculator();
-		System.out.println("Memory: " + calc.getMemory());
+		// Set value to Zero
+		calc.setMemory(ZERO);
+		// Welcome Message
+		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
+		
+		// add here do-while loop for keeping asking input using new operator values "continue" and "Q"
 		String input = getInput();
 		
 		splittedString = split(input, " ");
 		calc.readAndCalculate(splittedString);		
 		System.out.println("Final result: " + calc.getMemory());
 
-		
 		// TODO
 		// - Allow multi line input with loop and break character
 		// - Wrap everything (Input, Read input, Split input, Calculate, Return Total and ask input in a single method
 		// - Create a printing method that returns what to print (Testable)
 		// - if there is already an operator saved on memory raise exception and quit (ie 1 + + 1 not allowed)
 		
+		// remaining main method requisites
+		/*
+		5. If any kind of exception occurs (except the end of input), print the word "Error",
+		reset the calculator to its initial state, and discard the remainder of the input line,
+		6. For an end of input exception just print the word "Goodbye" and exit the program.
+		*/
 	}
 	
 	public static String getInput(){
@@ -54,8 +64,8 @@ public class FractionCalculator {
 	}
 
 	public Fraction toFraction(int[] numberArray) {
-		Fraction frac = new Fraction(numberArray[0], numberArray[1]);
-		return frac;
+		Fraction f = new Fraction(numberArray[0], numberArray[1]);
+		return f;
 	}
 
 	public void calculate(Fraction memory, String operation, Fraction fraction) {
@@ -112,7 +122,7 @@ public class FractionCalculator {
 	}
 	
 	public Fraction clear(){
-		return new Fraction(0);
+		return ZERO;
 	}
 	
 	public Fraction inputToFraction(String stringFraction){
@@ -151,11 +161,12 @@ public class FractionCalculator {
 			} else {
 				// Stop processing any remaining input, set the value in the calculator to zero,
 				// and raise an exception
-				setMemory(new Fraction(0));
-				System.out.println("Unexpected input");
+				setMemory(ZERO);
+				System.out.println("Error");
 				break;
 			}
-			System.out.println("Memory: " + getMemory());
 		}
+		//print the final result of calculating the input line
+		System.out.println("Result at the end of the line: " + getMemory());
 	}
 }
