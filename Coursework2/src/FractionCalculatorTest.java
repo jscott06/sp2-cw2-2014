@@ -77,7 +77,7 @@ public class FractionCalculatorTest {
     }
     
     @Test
-    public void readAndCalculate1(){
+    public void readAndCalculate(){
     	//1 fraction
     	FractionCalculator calc1 = new FractionCalculator();
     	String[] input = {"1/2"};
@@ -123,4 +123,12 @@ public class FractionCalculatorTest {
     	calc7.readAndCalculate(input7b);
     	assertEquals(new Fraction(5), calc7.getMemory());
     }
+    
+//    @Test
+//    public void requestUserInput(){
+//    	FractionCalculator calc = new FractionCalculator();
+//    	String[] input1 = {"1/2", "+", "1"};
+//    	String[] input2 = {"+", "1", "q"};
+//    	calc.requestUserInput();
+//    }
 }

@@ -8,41 +8,27 @@ public class FractionCalculator {
 	public String operator = "not initialised";
 	public Fraction memory;
 	public static Fraction ZERO = new Fraction(0);
+	public static Scanner scanner = new Scanner(System.in);
+
 	
 	public static void main(String[] args) {
 		
 		FractionCalculator calc = new FractionCalculator();
-		// Set value to Zero
-		calc.setMemory(ZERO);
-		// Welcome Message
-		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
-		
-		// add here do-while loop for keeping asking input using new operator values "continue" and "Q"
-		String input = getInput();
-		
-		splittedString = split(input, " ");
-		calc.readAndCalculate(splittedString);		
-		System.out.println("Final result: " + calc.getMemory());
+		calc.setMemory(ZERO); // Set value to Zero
 
+		calc.requestUserInput();
 		// TODO
-		// - Allow multi line input with loop and break character
 		// - Wrap everything (Input, Read input, Split input, Calculate, Return Total and ask input in a single method
-		// - Create a printing method that returns what to print (Testable)
-		
 		// remaining main method requisites
 		/*
-		5. If any kind of exception occurs (except the end of input), print the word "Error",
-		reset the calculator to its initial state, and discard the remainder of the input line,
 		6. For an end of input exception just print the word "Goodbye" and exit the program.
-		*/
+		*/ // DO NOT PRINT TOTAL IF QUITTING FOR AN ERROR
 	}
 	
 	public static String getInput(){
-		Scanner scanner = new Scanner(System.in);
 		String i;
 		System.out.println("Type in:");
 		i = scanner.nextLine();
-		scanner.close();
 		return i;
 	}
 	
@@ -144,35 +130,49 @@ public class FractionCalculator {
 
 	public void readAndCalculate(String[] inputLine) {
 		for (String element : inputLine) {
-			if (getOperator() != "" && (element.matches("((neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)|[-*/+]){1}"))) 
-			{
+			// I learnt how to use regular expressions here: http://www.regexr.com/
+			if (getOperator() != "" && (element.matches("([-*/+]){1}"))) {
+				// do not allow the input of more than 1 operator in sequence
 				setMemory(ZERO);
 				System.out.println("Error");
 				break;
 			} else if (element.matches("[-*/+]{1}")) {
-				// I learnt how to use regular expressions here: http://www.regexr.com/
 				// all the operations
 				setOperator(element);
 			} else if (element.matches("((neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)){1}")) {
 				// all the functions
 				operateOnMemory(element);
-			
 			}else if (element.matches("(-{0,1}[0-9]+\\/{1}-{0,1}[1-9]+)|(-{0,1}[0-9]+)")) {
 				// every fraction negative or positive with denominator!= 0 + whole numbers
 	        	initialiseOrOperateOnMemory(element);
 			} else if (element.matches("((q)|(Q)|(quit)){1}")) {
 				// Raise an exception
-				System.out.println("You decided to quit"); 
-				// TODO this needs to quit the calculator and stop to ask user input
+				System.out.println("Goodbye"); 
+				setOperator(element); 
+				break;
 			} else {
 				// Stop processing any remaining input, set the value in the calculator to zero,
 				// and raise an exception
 				setMemory(ZERO);
 				System.out.println("Error");
+				setOperator("q"); 
 				break;
 			}
 		}
 		//print the final result of calculating the input line
 		System.out.println("Result at the end of the line: " + getMemory());
+	}
+	
+	public void requestUserInput(){ // TO TEST USER INPUT
+		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
+		String input;
+
+		while (!operator.matches("((q)|(Q)|(quit)){1}")){ // when operator is different from q keep asking user input
+			input = getInput();
+			splittedString = split(input, " ");
+			readAndCalculate(splittedString);		
+			System.out.println("result: " + getMemory());
+		}
+		scanner.close();
 	}
 }
