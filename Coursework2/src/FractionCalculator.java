@@ -128,25 +128,21 @@ public class FractionCalculator {
 		setOperator("");
 	}
 
-	public void readAndCalculate(String[] inputLine) {
+	public void readAndCalculate(String[] inputLine) {			
 		for (String element : inputLine) {
-			// I learnt how to use regular expressions here: http://www.regexr.com/
-			if (getOperator() != "" && (element.matches("([-*/+]){1}"))) {
+			
+			if (!isEmpty(getOperator()) && (isMathOperator(element))) {
 				// do not allow the input of more than 1 operator in sequence
 				setMemory(ZERO);
 				System.out.println("Error");
 				break;
-			} else if (element.matches("[-*/+]{1}")) {
-				// all the operations
+			} else if (isMathOperator(element)) {
 				setOperator(element);
-			} else if (element.matches("((neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)){1}")) {
-				// all the functions
+			} else if (isFunction(element)) {
 				operateOnMemory(element);
-			}else if (element.matches("(-{0,1}[0-9]+\\/{1}-{0,1}[1-9]+)|(-{0,1}[0-9]+)")) {
-				// every fraction negative or positive with denominator!= 0 + whole numbers
+			} else if (isNumberOrFraction(element)) {
 	        	initialiseOrOperateOnMemory(element);
-			} else if (element.matches("((q)|(Q)|(quit)){1}")) {
-				// Raise an exception
+			} else if (isQuit(element)) {
 				System.out.println("Goodbye"); 
 				setOperator(element); 
 				break;
@@ -167,12 +163,38 @@ public class FractionCalculator {
 		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
 		String input;
 
-		while (!operator.matches("((q)|(Q)|(quit)){1}")){ // when operator is different from q keep asking user input
+		while (!isQuit(getOperator())){ // when operator is different from q keep asking user input
 			input = getInput();
-			splittedString = split(input, " ");
+			splittedString = split(input, " ");			
 			readAndCalculate(splittedString);		
 			System.out.println("result: " + getMemory());
 		}
 		scanner.close();
+	}
+	
+	// I learnt how to use regular expressions here: http://www.regexr.com/
+	private boolean isMathOperator(String i){
+		// all the operations
+		if (i.matches("[-*/+]{1}")) return true;
+		return false;
+	}
+	private boolean isFunction(String i){
+		// all the functions
+		if (i.matches("((n)|(neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)){1}")) return true;
+		return false;
+	}
+	private boolean isNumberOrFraction(String i){
+		// every fraction negative or positive with denominator!= 0 + whole numbers
+		if (i.matches("(-{0,1}[0-9]+\\/{1}-{0,1}[1-9]+)|(-{0,1}[0-9]+)")) return true;
+		return false;
+	}
+	private boolean isQuit(String i){
+		// Raise an exception
+		if (i.matches("((q)|(Q)|(quit)){1}")) return true;
+		return false;
+	}
+	private boolean isEmpty(String i){
+		 if (i == "") return true;
+		 return false;
 	}
 }
