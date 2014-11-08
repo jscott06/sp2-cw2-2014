@@ -1,16 +1,15 @@
 import java.util.Scanner;
 
 public class FractionCalculator {
-	
 	final static String SPACE = " ";
 	final static String SLASH = "/";
 	public static String[] splittedString;
-	public String operator = "not initialised";
+	public String NOT_INITIALISED = "not initialised";
+	public String operator = NOT_INITIALISED;
 	public Fraction memory;
 	public static Fraction ZERO = new Fraction(0);
 	public static Scanner scanner = new Scanner(System.in);
 
-	
 	public static void main(String[] args) {
 		
 		FractionCalculator calc = new FractionCalculator();
@@ -18,11 +17,58 @@ public class FractionCalculator {
 
 		calc.requestUserInput();
 		// TODO
-		// - Wrap everything (Input, Read input, Split input, Calculate, Return Total and ask input in a single method
-		// remaining main method requisites
-		/*
-		6. For an end of input exception just print the word "Goodbye" and exit the program.
-		*/ // DO NOT PRINT TOTAL IF QUITTING FOR AN ERROR
+		//6. For an end of input exception just print the word "Goodbye" and exit the program.
+		// DO NOT PRINT TOTAL IF QUITTING FOR AN ERROR
+	}
+	
+	public void requestUserInput(){ // TO TEST USER INPUT
+		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
+		String input;
+
+		while (!isQuit(getOperator())){ // when operator is different from q keep asking user input
+			input = getInput();
+			splittedString = split(input, " ");			
+			readAndCalculate(splittedString);		
+			System.out.println("result: " + getMemory());
+		}
+		scanner.close();
+	}
+	
+	public void readAndCalculate(String[] inputLine) {
+		if (isNumberOrFraction(inputLine[0])) {
+			setMemory(ZERO);
+			setOperator("not initialised");
+		}
+		for (String element : inputLine) {
+			
+			if (!isEmpty(getOperator()) && (isMathOperator(element))) {
+				// do not allow the input of more than 1 operator in sequence
+				setMemory(ZERO);
+				System.out.println("Error");
+				break;
+			} else if (isMathOperator(element)) {
+				setOperator(element);
+			} else if (isFunction(element)) {
+				operateOnMemory(element);
+			} else if (isNumberOrFraction(element)) {
+	        	initialiseOrOperateOnMemory(element);
+			} else if (isQuit(element)) {
+				System.out.println("Goodbye"); 
+				setOperator(element); 
+				break;
+			} else {
+				// Stop processing any remaining input, set the value in the calculator to zero,
+				// and raise an exception
+				setMemory(ZERO);
+				System.out.println("Error");
+				setOperator("q"); 
+				break;
+			}
+		}
+		//print the final result of calculating the input line
+		System.out.println("Result at the end of the line: " + getMemory());
+		
+		ignoreLastOperation(inputLine[inputLine.length - 1]); // Removes from memory last operator
 	}
 	
 	public static String getInput(){
@@ -120,62 +166,12 @@ public class FractionCalculator {
 	}
 	
 	public void initialiseOrOperateOnMemory(String input){
-		if (getOperator() == "not initialised") {
+		if (getOperator() == NOT_INITIALISED) {
         	setMemory(inputToFraction(input));
     	} else {
         	calculate(getMemory(), getOperator(), inputToFraction(input));
     	}
 		setOperator("");
-	}
-
-	public void readAndCalculate(String[] inputLine) {
-		
-		for (String element : inputLine) {
-			if (!isEmpty(getOperator()) && (isMathOperator(element))) {
-				// do not allow the input of more than 1 operator in sequence
-				setMemory(ZERO);
-				System.out.println("Error");
-				break;
-			} else if (isMathOperator(element)) {
-				setOperator(element);
-			} else if (isFunction(element)) {
-				operateOnMemory(element);
-			} else if (isNumberOrFraction(element)) {
-	        	initialiseOrOperateOnMemory(element);
-			} else if (isQuit(element)) {
-				System.out.println("Goodbye"); 
-				setOperator(element); 
-				break;
-			} else {
-				// Stop processing any remaining input, set the value in the calculator to zero,
-				// and raise an exception
-				setMemory(ZERO);
-				System.out.println("Error");
-				setOperator("q"); 
-				break;
-			}
-		}
-		//print the final result of calculating the input line
-		System.out.println("Result at the end of the line: " + getMemory());
-		
-		ignoreLastOperation(inputLine[inputLine.length - 1]);
-	}
-	
-	public void ignoreLastOperation(String element){
-		if (isMathOperator(element)) setOperator("");
-	}
-	
-	public void requestUserInput(){ // TO TEST USER INPUT
-		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
-		String input;
-
-		while (!isQuit(getOperator())){ // when operator is different from q keep asking user input
-			input = getInput();
-			splittedString = split(input, " ");			
-			readAndCalculate(splittedString);		
-			System.out.println("result: " + getMemory());
-		}
-		scanner.close();
 	}
 	
 	// I learnt how to use regular expressions here: http://www.regexr.com/
@@ -202,5 +198,9 @@ public class FractionCalculator {
 	private boolean isEmpty(String i){
 		 if (i == "") return true;
 		 return false;
+	}
+	
+	private void ignoreLastOperation(String element){
+		if (isMathOperator(element)) setOperator("");
 	}
 }
