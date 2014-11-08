@@ -128,9 +128,9 @@ public class FractionCalculator {
 		setOperator("");
 	}
 
-	public void readAndCalculate(String[] inputLine) {			
+	public void readAndCalculate(String[] inputLine) {
+		
 		for (String element : inputLine) {
-			
 			if (!isEmpty(getOperator()) && (isMathOperator(element))) {
 				// do not allow the input of more than 1 operator in sequence
 				setMemory(ZERO);
@@ -157,6 +157,12 @@ public class FractionCalculator {
 		}
 		//print the final result of calculating the input line
 		System.out.println("Result at the end of the line: " + getMemory());
+		
+		ignoreLastOperation(inputLine[inputLine.length - 1]);
+	}
+	
+	public void ignoreLastOperation(String element){
+		if (isMathOperator(element)) setOperator("");
 	}
 	
 	public void requestUserInput(){ // TO TEST USER INPUT
