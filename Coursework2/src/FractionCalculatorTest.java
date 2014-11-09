@@ -8,14 +8,14 @@ public class FractionCalculatorTest {
     
     @Test
 	public void splitBySpace() {
-    	String[] testArray = calc.split("Jacopo Scotti SP2 Coursework2", " ");
+    	String[] testArray = FractionCalculator.split("Jacopo Scotti SP2 Coursework2", " ");
     	String[] checkArray = {"Jacopo", "Scotti", "SP2", "Coursework2"};
     	assertArrayEquals(checkArray, testArray);
 	}
     
     @Test
     public void splitBySlash() {
-    	String[] testArray = calc.split("1/3", "/");
+    	String[] testArray = FractionCalculator.split("1/3", "/");
     	String[] checkArray = {"1", "3"};
     	assertArrayEquals(checkArray, testArray);
 	}
@@ -123,12 +123,4 @@ public class FractionCalculatorTest {
     	calc7.readAndCalculate(input7b);
     	assertEquals(new Fraction(5), calc7.getMemory());
     }
-    
-//    @Test
-//    public void requestUserInput(){
-//    	FractionCalculator calc = new FractionCalculator();
-//    	String[] input1 = {"1/2", "+", "1"};
-//    	String[] input2 = {"+", "1", "q"};
-//    	calc.requestUserInput();
-//    }
 }

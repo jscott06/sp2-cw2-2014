@@ -7,7 +7,7 @@ public class Fraction {
 
     public Fraction(int num, int denom) {
         if (denom == 0) {
-            System.out.println("Invalid fraction with denominator 0"); // this should use exceptions
+            System.out.println("Invalid fraction with denominator 0");
             return;
         }
         int gcd = myGcd(num, denom);
@@ -23,8 +23,6 @@ public class Fraction {
 
     @Override
     public String toString() {
-    	// TODO if negative number set Numerator to be negative and not denominator
-    	// ie if den < 0 then num = neg num && den = abs den
     	if (getDenominator() == 1)
     	{
     		return "" + getNumerator();

@@ -7,19 +7,20 @@ public class FractionCalculator {
 	final static String NOT_INITIALISED = "not initialised";
 	final static String ERROR = "Error";
 	final static String GOODBYE = "Goodbye";
-	final static String WELCOME_MESSAGE = "Welcome, you are using Jacopo Scotti's calculator";
+	final static String WELCOME_MESSAGE = "Welcome, you are using Jacopo Scotti's calculator."
+										+ "\nRemember to separate every element with a space.";
 	final static String ASK_INPUT = "Type in:";
-	final static String HOW_TO_QUIT = "'Q', 'q' or 'quit' for quitting";
+	final static String HOW_TO_QUIT = "Type 'Q', 'q' or 'quit' for quitting";
 	final static String RESULT = "Result: ";
 	final static Fraction FRACTION_ZERO = new Fraction(0);
 	final static int ZERO = 0;
 	final static int ONE = 1;
 	
-	public static String[] splittedString;
-	public static String input;
-	public static Scanner scanner = new Scanner(System.in);
-	public String operator = NOT_INITIALISED;
-	public Fraction memory;
+	private static String[] splittedString;
+	private static String input;
+	private static Scanner scanner = new Scanner(System.in);
+	private String operator = NOT_INITIALISED;
+	private Fraction memory;
 	
 	public static void main(String[] args) {
 		
@@ -30,6 +31,7 @@ public class FractionCalculator {
 	
 	public void requestUserInput(){
 		print(WELCOME_MESSAGE);
+		print(HOW_TO_QUIT);
 		// when operator is different from q keep asking user input
 		while (!isQuitException(getOperator())){
 			input = getInput();
@@ -74,13 +76,15 @@ public class FractionCalculator {
 				break;
 			}
 		}
-		ignoreLastOperation(inputLine[inputLine.length - ONE]); // Removes from memory last operator
+		// Removes last operator from memory 
+		ignoreLastOperation(inputLine[inputLine.length - ONE]);
 	}
 	
 	public static void print(String toPrint){
 		System.out.println(toPrint);
 	}
-	public static String getInput(){
+	public static String getInput(){ 
+		// Asks user input and returns it
 		String i;
 		print(ASK_INPUT);
 		i = scanner.nextLine();
@@ -88,6 +92,7 @@ public class FractionCalculator {
 	}
 	
 	public static String[] split(String string, String delimitator) {
+		// Splits string by delimitator and returns it
 		return string.split(delimitator);
 	}
 
@@ -105,6 +110,7 @@ public class FractionCalculator {
 	}
 
 	public Fraction toFraction(int[] numberArray) {
+		// Creates a fraction using the 2 int elements of numberArray
 		Fraction f = new Fraction(numberArray[ZERO], numberArray[ONE]);
 		return f;
 	}
@@ -180,8 +186,10 @@ public class FractionCalculator {
 	
 	public void initialiseOrOperateOnMemory(String input){
 		if (getOperator() == NOT_INITIALISED) {
+			// If first element of the array, assigns it to memory
         	setMemory(inputToFraction(input));
     	} else {
+    		// Calls the calculate method with fraction1-OPERATOR-fraction2
         	calculate(getMemory(), getOperator(), inputToFraction(input));
     	}
 		clearOperator();
@@ -209,6 +217,7 @@ public class FractionCalculator {
 		return false;
 	}
 	private boolean isEmpty(String i){
+		// Checks if string is empty string
 		 if (i == EMPTY) return true;
 		 return false;
 	}
