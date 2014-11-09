@@ -3,37 +3,42 @@ import java.util.Scanner;
 public class FractionCalculator {
 	final static String SPACE = " ";
 	final static String SLASH = "/";
+	final static String EMPTY = "";
 	final static String NOT_INITIALISED = "not initialised";
 	final static String ERROR = "Error";
 	final static String GOODBYE = "Goodbye";
+	final static String WELCOME_MESSAGE = "Welcome, you are using Jacopo Scotti's calculator";
+	final static String ASK_INPUT = "Type in:";
+	final static String HOW_TO_QUIT = "'Q', 'q' or 'quit' for quitting";
+	final static String RESULT = "Result: ";
 	final static Fraction FRACTION_ZERO = new Fraction(0);
 	final static int ZERO = 0;
 	final static int ONE = 1;
 	
 	public static String[] splittedString;
 	public static String input;
+	public static Scanner scanner = new Scanner(System.in);
 	public String operator = NOT_INITIALISED;
 	public Fraction memory;
-	public static Scanner scanner = new Scanner(System.in);
-
+	
 	public static void main(String[] args) {
 		
 		FractionCalculator calc = new FractionCalculator();
 		calc.setMemory(FRACTION_ZERO); // Set value to Zero
 		calc.requestUserInput();
-		// TODO
-		//6. For an end of input exception just print the word "Goodbye" and exit the program.
-		// DO NOT PRINT TOTAL IF QUITTING FOR AN ERROR
 	}
 	
-	public void requestUserInput(){ // TO TEST USER INPUT
-		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
-		
-		while (!isQuit(getOperator())){ // when operator is different from q keep asking user input
+	public void requestUserInput(){
+		print(WELCOME_MESSAGE);
+		// when operator is different from q keep asking user input
+		while (!isQuitException(getOperator())){
 			input = getInput();
 			splittedString = split(input, SPACE);			
-			readAndCalculate(splittedString);		
-			print("Final result: " + getMemory());
+			readAndCalculate(splittedString);
+			if (getOperator() != ERROR) {
+				print(RESULT + getMemory());
+				print(HOW_TO_QUIT);
+			}
 		}
 		scanner.close();
 	}
@@ -65,13 +70,10 @@ public class FractionCalculator {
 				// and raise an exception
 				setMemory(FRACTION_ZERO);
 				print(ERROR);
-				setOperator("q"); 
+				setOperator(ERROR); 
 				break;
 			}
 		}
-		//print the final result of calculating the input line
-		print("Result at the end of the line: " + getMemory());
-		
 		ignoreLastOperation(inputLine[inputLine.length - ONE]); // Removes from memory last operator
 	}
 	
@@ -80,7 +82,7 @@ public class FractionCalculator {
 	}
 	public static String getInput(){
 		String i;
-		System.out.println("Type in:");
+		print(ASK_INPUT);
 		i = scanner.nextLine();
 		return i;
 	}
@@ -147,7 +149,7 @@ public class FractionCalculator {
 	}
 	
 	public void clearOperator(){
-		setOperator("");
+		setOperator(EMPTY);
 	}
 	public void setOperator(String operator){
 		this.operator = operator;
@@ -207,8 +209,13 @@ public class FractionCalculator {
 		return false;
 	}
 	private boolean isEmpty(String i){
-		 if (i == "") return true;
+		 if (i == EMPTY) return true;
 		 return false;
+	}
+
+	private boolean isQuitException(String i){
+		if (i.matches("((q)|(Q)|(quit)|(Error)){1}")) return true;
+		return false;
 	}
 	
 	private void ignoreLastOperation(String element){
