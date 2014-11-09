@@ -3,18 +3,23 @@ import java.util.Scanner;
 public class FractionCalculator {
 	final static String SPACE = " ";
 	final static String SLASH = "/";
+	final static String NOT_INITIALISED = "not initialised";
+	final static String ERROR = "Error";
+	final static String GOODBYE = "Goodbye";
+	final static Fraction FRACTION_ZERO = new Fraction(0);
+	final static int ZERO = 0;
+	final static int ONE = 1;
+	
 	public static String[] splittedString;
-	public String NOT_INITIALISED = "not initialised";
+	public static String input;
 	public String operator = NOT_INITIALISED;
 	public Fraction memory;
-	public static Fraction ZERO = new Fraction(0);
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		
 		FractionCalculator calc = new FractionCalculator();
-		calc.setMemory(ZERO); // Set value to Zero
-
+		calc.setMemory(FRACTION_ZERO); // Set value to Zero
 		calc.requestUserInput();
 		// TODO
 		//6. For an end of input exception just print the word "Goodbye" and exit the program.
@@ -23,28 +28,27 @@ public class FractionCalculator {
 	
 	public void requestUserInput(){ // TO TEST USER INPUT
 		System.out.println("Welcome, you are using Jacopo Scotti's calculator");
-		String input;
-
+		
 		while (!isQuit(getOperator())){ // when operator is different from q keep asking user input
 			input = getInput();
-			splittedString = split(input, " ");			
+			splittedString = split(input, SPACE);			
 			readAndCalculate(splittedString);		
-			System.out.println("result: " + getMemory());
+			print("Final result: " + getMemory());
 		}
 		scanner.close();
 	}
 	
 	public void readAndCalculate(String[] inputLine) {
-		if (isNumberOrFraction(inputLine[0])) {
-			setMemory(ZERO);
-			setOperator("not initialised");
+		if (isNumberOrFraction(inputLine[ZERO])) {
+			setMemory(FRACTION_ZERO);
+			setOperator(NOT_INITIALISED);
 		}
 		for (String element : inputLine) {
 			
 			if (!isEmpty(getOperator()) && (isMathOperator(element))) {
 				// do not allow the input of more than 1 operator in sequence
-				setMemory(ZERO);
-				System.out.println("Error");
+				setMemory(FRACTION_ZERO);
+				print(ERROR);
 				break;
 			} else if (isMathOperator(element)) {
 				setOperator(element);
@@ -53,24 +57,27 @@ public class FractionCalculator {
 			} else if (isNumberOrFraction(element)) {
 	        	initialiseOrOperateOnMemory(element);
 			} else if (isQuit(element)) {
-				System.out.println("Goodbye"); 
+				print(GOODBYE); 
 				setOperator(element); 
 				break;
 			} else {
 				// Stop processing any remaining input, set the value in the calculator to zero,
 				// and raise an exception
-				setMemory(ZERO);
-				System.out.println("Error");
+				setMemory(FRACTION_ZERO);
+				print(ERROR);
 				setOperator("q"); 
 				break;
 			}
 		}
 		//print the final result of calculating the input line
-		System.out.println("Result at the end of the line: " + getMemory());
+		print("Result at the end of the line: " + getMemory());
 		
-		ignoreLastOperation(inputLine[inputLine.length - 1]); // Removes from memory last operator
+		ignoreLastOperation(inputLine[inputLine.length - ONE]); // Removes from memory last operator
 	}
 	
+	public static void print(String toPrint){
+		System.out.println(toPrint);
+	}
 	public static String getInput(){
 		String i;
 		System.out.println("Type in:");
@@ -84,18 +91,19 @@ public class FractionCalculator {
 
 	public int[] toNumber(String[] stringArray) {
 		int[] numberArray = new int[2];
+		numberArray[ZERO] = Integer.parseInt(stringArray[ZERO]);
 		
-		numberArray[0] = Integer.parseInt(stringArray[0]);
-		if (stringArray.length == 1) {
-			numberArray[1] = 1;
+		if (stringArray.length == ONE) { 
+		// If stringArray is an integer assigns 1 to denom
+			numberArray[ONE] = ONE;
 		} else {
-			numberArray[1] = Integer.parseInt(stringArray[1]);
+			numberArray[ONE] = Integer.parseInt(stringArray[ONE]);
 		}
 		return numberArray;
 	}
 
 	public Fraction toFraction(int[] numberArray) {
-		Fraction f = new Fraction(numberArray[0], numberArray[1]);
+		Fraction f = new Fraction(numberArray[ZERO], numberArray[ONE]);
 		return f;
 	}
 
@@ -114,7 +122,7 @@ public class FractionCalculator {
         	setMemory(memory.divide(fraction));
         	break;
 		}
-		setOperator("");
+		clearOperator();
 	}
 
 	public void operateOnMemory(String operation) {
@@ -135,9 +143,12 @@ public class FractionCalculator {
         	setMemory(clear());
         	break;
 		}
-		setOperator("");
+		clearOperator();
 	}
 	
+	public void clearOperator(){
+		setOperator("");
+	}
 	public void setOperator(String operator){
 		this.operator = operator;
 	}
@@ -155,13 +166,13 @@ public class FractionCalculator {
 	}
 	
 	public Fraction clear(){
-		return ZERO;
+		return FRACTION_ZERO;
 	}
 	
 	public Fraction inputToFraction(String stringFraction){
-		String[] stringNumAndDen = split(stringFraction, "/");
+		String[] stringNumAndDen = split(stringFraction, SLASH);
     	int[] numAndDen = toNumber(stringNumAndDen);
-    	Fraction f = toFraction(numAndDen); // refactor
+    	Fraction f = toFraction(numAndDen); 
 		return f;
 	}
 	
@@ -171,27 +182,27 @@ public class FractionCalculator {
     	} else {
         	calculate(getMemory(), getOperator(), inputToFraction(input));
     	}
-		setOperator("");
+		clearOperator();
 	}
 	
 	// I learnt how to use regular expressions here: http://www.regexr.com/
 	private boolean isMathOperator(String i){
-		// all the operations
+		// Checks if string is one of the Math Operators
 		if (i.matches("[-*/+]{1}")) return true;
 		return false;
 	}
 	private boolean isFunction(String i){
-		// all the functions
+		// Checks if string is one of the Functions
 		if (i.matches("((n)|(neg)|(N)|(abs)|(a)|(A)|(clear)|(C)|(c)){1}")) return true;
 		return false;
 	}
 	private boolean isNumberOrFraction(String i){
-		// every fraction negative or positive with denominator!= 0 + whole numbers
+		// Every fraction negative or positive with denominator!= 0 + whole numbers
 		if (i.matches("(-{0,1}[0-9]+\\/{1}-{0,1}[1-9]+)|(-{0,1}[0-9]+)")) return true;
 		return false;
 	}
 	private boolean isQuit(String i){
-		// Raise an exception
+		// Checks if string is Quit and raises an exception
 		if (i.matches("((q)|(Q)|(quit)){1}")) return true;
 		return false;
 	}
@@ -201,6 +212,7 @@ public class FractionCalculator {
 	}
 	
 	private void ignoreLastOperation(String element){
-		if (isMathOperator(element)) setOperator("");
+		// Clears the operator memory if last element in User input was an operator 
+		if (isMathOperator(element)) clearOperator();
 	}
 }
